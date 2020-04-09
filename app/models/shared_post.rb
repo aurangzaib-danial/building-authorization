@@ -8,7 +8,20 @@ class SharedPost < ApplicationRecord
     :guest => 100
   }
 
-  def viewable?
-    permission <= PERMISSIONS[:guest]
+  def self.permissable(*args)
+    args.each do |arg|
+      define_method "#{arg}able?" do
+        case arg
+        when :view
+          permission <= PERMISSIONS[:guest]
+        when :edit
+          permission <= PERMISSIONS[:collaborator]
+        when :destroy
+          permission <= PERMISSIONS[:owner]
+        end
+      end
+    end
   end
+
+  permissable :view, :edit, :destroy
 end
