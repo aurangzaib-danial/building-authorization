@@ -2,6 +2,8 @@ class Post < ApplicationRecord
   has_many :shared_posts
   has_many :users, through: :shared_posts
 
+  validates_presence_of :title, :body
+
   def self.permissions_for(*args)
     args.each do |arg|
       define_method "#{arg}able_by?" do |user|
@@ -12,6 +14,10 @@ class Post < ApplicationRecord
     end
   end
 
-  permissions_for :view, :edit
+  permissions_for :view, :edit, :destroy
+
+  def add_owner(user)
+    shared_posts.build(user: user, permission: 0)
+  end
 
 end

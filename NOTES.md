@@ -27,5 +27,9 @@ A post has many users through shared_posts
 - [x] Setup Authentication using Devise.
 - [x] Setup post model
 - [x] Setup shared_posts model
-- [ ] Implement Authorization by writing code that you wish you had
-- [ ] Using Metaprogramming for making models DRY.
+- [x] Implement Authorization by writing code that you wish you had
+- [x] Using Metaprogramming for making models DRY.
+- [x] Make controller helpers DRY.
+- [x] Create new post with owner permission.
+- [ ] Allow owners to manage permissions for posts through web.
+- [ ] Push to Github
