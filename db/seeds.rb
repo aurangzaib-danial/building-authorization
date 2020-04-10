@@ -8,12 +8,20 @@
 
 sunny = User.create(email: 'aurangzaib.danial@gmail.com', password: 'khan1234')
 avi = User.create(email: 'avi@fs.com', password: 'avi1234')
+jay = User.create(email: 'jay@dota.com', password: 'jay12345')
+mark = User.create(email: 'mark@m.com', password: 'mark1234')
+ben = User.create(email: 'ben@b.com', password: 'ben1234')
+adam = User.create(email: 'a@a.com', password: 'adam1234')
+
 
 post_1 = Post.create(title: 'my first post', body: 'this is the body')
 post_1.shared_posts.create(user: sunny, permission: 0)
 post_1.shared_posts.create(user: avi, permission: 10)
+post_1.shared_posts.create(user: jay, permission: 100)
+
 
 
 post_2 = Post.create(title: 'Flatiron school rocks', body: 'We teach Ruby, because it\'s the best')
 post_2.shared_posts.create(user: avi, permission: 0)
 post_2.shared_posts.create(user: sunny, permission: 100)
+

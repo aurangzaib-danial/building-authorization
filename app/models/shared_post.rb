@@ -16,12 +16,12 @@ class SharedPost < ApplicationRecord
           permission <= PERMISSIONS[:guest]
         when :edit
           permission <= PERMISSIONS[:collaborator]
-        when :destroy
+        when :manage
           permission <= PERMISSIONS[:owner]
         end
       end
     end
   end
 
-  permissable :view, :edit, :destroy
+  permissable :view, :edit, :manage
 end

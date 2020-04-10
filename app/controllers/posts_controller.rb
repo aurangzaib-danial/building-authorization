@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_post, only: %i(show edit destroy)
+  before_action :set_post, except: %i(index new create)
 
   def index
     @posts = Post.all
@@ -31,17 +31,23 @@ class PostsController < ApplicationController
     can_current_user? :edit, @post
   end
 
-  def destroy
-    can_current_user? :destroy, @post
+  def update
+
+    if @post.update(post_params)
+      redirect_to @post
+    else
+      render :edit
+    end
+
   end
 
   private
 
-  def set_post
-    @post = Post.find(params[:id])
-  end
-
   def post_params
     params.require(:post).permit(:title, :body)
+  end
+
+  def set_post
+    @post = Post.find(params[:id])
   end
 end

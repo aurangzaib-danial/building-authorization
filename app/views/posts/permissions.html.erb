@@ -1,0 +1,13 @@
+<h1>Permissions</h1>
+
+
+<h2>Collaborators (can edit)</h2>
+
+<%= render 'users/users', users: @post.collaborators %>
+
+
+<h2>Guests (can read)</h2>
+
+<%= render 'users/users', users: @post.guests %>
+
+<p><%= link_to 'Add User', new_post_user_path(@post) %></p>

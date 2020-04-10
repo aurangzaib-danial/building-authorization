@@ -1,0 +1,14 @@
+<h1>Add a user to ==> <%= @post.title %></h1>
+
+<%= form_with url: post_users_path(@post) do |form| %>
+  <%= form.label :user, 'Please Select' %><br>
+  <%= form.collection_select :user_id, @users, :id, :email, include_blank: 'Select User' %>
+  <p>Set Permission</p>
+  <%= form.radio_button :permission, '100', checked: true %>
+  <%= form.label :permission_100, "Guest (can view)" %>
+  <%= form.radio_button :permission, '10'  %>
+  <%= form.label :permission_10, "Collaborator (can edit as well)" %>
+
+  <p><%= form.submit 'Grant Permission' %></p>
+<% end %>
+

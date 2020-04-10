@@ -1,6 +1,7 @@
-<h1><%= @post.title %></h1>
+<h1><%= @post.title %> BY <%= @post.owner.email %></h1>
 
 <p><%= @post.body %></p>
 
 <p><%= link_to 'Edit', edit_post_path(@post) %></p>
+<p><%= link_to 'Permissions', permissions_post_path(@post) %></p>
 <p><%= button_to 'Delete', post_path(@post), method: :delete %></p>

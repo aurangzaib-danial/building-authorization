@@ -8,4 +8,5 @@ class ApplicationController < ActionController::Base
       redirect_to root_path, alert: "You are not allowed to #{action} this post"
     end
   end
+
 end

@@ -1,8 +1,13 @@
 Rails.application.routes.draw do
 
   root 'posts#index'
-  
-  resources :posts, except: :index
+
   devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  resources :posts, except: :index do
+    get 'permissions', on: :member
+
+    resources :users, only: %i(new create)
+  end
+
 end
