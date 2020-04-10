@@ -31,5 +31,5 @@ A post has many users through shared_posts
 - [x] Using Metaprogramming for making models DRY.
 - [x] Make controller helpers DRY.
 - [x] Create new post with owner permission.
-- [ ] Allow owners to manage permissions for posts through web.
-- [ ] Push to Github
+- [x] Allow owners to manage permissions for posts through web.
+- [x] Push to Github
