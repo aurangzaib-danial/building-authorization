@@ -1,8 +1,7 @@
 class UsersController < ApplicationController
 
   before_action :authenticate_user!
-  before_action :set_post
-  before_action :authorize!
+  before_action :authorize_post
 
   def new
     @users = User.not_associated_with(@post)
@@ -22,11 +21,8 @@ class UsersController < ApplicationController
 
   private
 
-  def set_post
+  def authorize_post
     @post = Post.find(params[:post_id])
-  end
-
-  def authorize!
-    can_current_user? :manage, @post
+    authorize! :manage, @post
   end
 end

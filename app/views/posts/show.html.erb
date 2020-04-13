@@ -2,6 +2,6 @@
 
 <p><%= @post.body %></p>
 
-<p><%= link_to 'Edit', edit_post_path(@post) %></p>
-<p><%= link_to 'Permissions', permissions_post_path(@post) %></p>
-<p><%= button_to 'Delete', post_path(@post), method: :delete %></p>
+<p><%= link_to 'Edit', edit_post_path(@post) if can? :update, @post %></p>
+<p><%= link_to 'Permissions', permissions_post_path(@post) if can? :read, @post %></p>
+<p><%= button_to 'Delete', post_path(@post), method: :delete if can? :manage, @post %></p>

@@ -1,7 +1,7 @@
 class PostsController < ApplicationController
   
   before_action :authenticate_user!
-  before_action :set_post, except: %i(index new create)
+  load_and_authorize_resource except: %i[index new create]
 
   def index
     @posts = Post.all
@@ -20,24 +20,28 @@ class PostsController < ApplicationController
     else
       render :new
     end
-
   end
 
   def show
-    can_current_user? :view, @post
   end
 
   def edit
-    can_current_user? :edit, @post
   end
 
   def update
-
     if @post.update(post_params)
       redirect_to @post
     else
       render :edit
     end
+  end
+
+  def destroy
+    @post.destroy
+    redirect_to root_path
+  end
+
+  def permissions
 
   end
 
@@ -45,9 +49,5 @@ class PostsController < ApplicationController
 
   def post_params
     params.require(:post).permit(:title, :body)
-  end
-
-  def set_post
-    @post = Post.find(params[:id])
   end
 end

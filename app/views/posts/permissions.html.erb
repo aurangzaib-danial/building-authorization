@@ -10,4 +10,4 @@
 
 <%= render 'users/users', users: @post.guests %>
 
-<p><%= link_to 'Add User', new_post_user_path(@post) %></p>
+<p><%= link_to 'Add User', new_post_user_path(@post) if can? :manage, @post %></p>
